@@ -23,19 +23,15 @@ $ composer install
 $ npm install && npm run dev
 ````
 
+### Install node_modules
+
+````bash
+$ npm install && npm run dev
+````
+
 Important details
 -----
 
-Change MySQL configurations in .env file:
-
-````bash
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=php_challenge
-DB_USERNAME=root
-DB_PASSWORD=root
-````
 
 In the "php-challenge_app_1" container, execute the commands:
 
