@@ -7,7 +7,7 @@ Installation
 
 ### Clone the repository
 
-````bash
+````
 $ git clone https://github.com/ricardovicente/php-challenge.git
 ````
 
@@ -26,9 +26,20 @@ $ npm install && npm run dev
 Important details
 -----
 
-In the "php-challenge_app_1" container, execute the commands:
+Change MySQL configurations in .env file:
 
 ````bash
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=php_challenge
+DB_USERNAME=root
+DB_PASSWORD=root
+````
+
+In the "php-challenge_app_1" container, execute the commands:
+
+````
 $ docker exec -it php-challenge_app_1 bash
 ````
 Inside the container:
@@ -39,6 +50,26 @@ $ chmod -Rf 777 storage
 $ php artisan migrate
 ````
 
+It is necessary to leave the queue monitor started to perform the process of importing the files:
+
+````bash
+$ php artisan queue:work
+````
+- - -
+WEB
+------------
+
+To access the web system, use the URL below and make a new registration:
+````
+http://localhost:8080/register
+````
+
+Then just log in normally
+````
+http://localhost:8080/
+````
+
+- - -
 API
 ------------
 
@@ -47,6 +78,12 @@ For all endpoints use:
 ````
 Authentication Bearer <token>
 ````
+
+To have your token, access the system with your email and password. Then, go to the profile menu and access the "API Tokens" option
+````
+http://localhost:8080/user/api-tokens
+````
+
 
 *Me Endpoint* - Returns all user data
 
