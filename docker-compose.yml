@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  app:
+    build: .docker/server
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/usr/share/nginx
+    networks:
+      - network
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: php_challenge
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - network
+
+networks:
+
+  network:
+    driver: bridge
