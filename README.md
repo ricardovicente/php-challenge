@@ -23,12 +23,6 @@ $ composer install
 $ npm install && npm run dev
 ````
 
-### Install node_modules
-
-````bash
-$ npm install && npm run dev
-````
-
 Important details
 -----
 
