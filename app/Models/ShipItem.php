@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\Uuid;
+use Illuminate\Support\Str;
 
 class ShipItem extends Model
 {
@@ -21,5 +22,10 @@ class ShipItem extends Model
     public function ship_order()
     {
         return $this->BelongsTo(ShipOrder::class);
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = Str::title($value);
     }
 }

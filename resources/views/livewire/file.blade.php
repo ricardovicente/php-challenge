@@ -40,7 +40,7 @@
                                     <th class="px-6 py-3 border-b-2 border-gray-100 text-left text-sm leading-4 text-blue-500 tracking-wider">Por</th>
                                     <th class="px-6 py-3 border-b-2 border-gray-100 text-left text-sm leading-4 text-blue-500 tracking-wider">Em</th>
                                     <th class="px-6 py-3 border-b-2 border-gray-100 text-left text-sm leading-4 text-blue-500 tracking-wider">Status</th>
-                                    <th class="px-6 py-3 border-b-2 border-gray-100"></th>
+                                    {{-- <th class="px-6 py-3 border-b-2 border-gray-100"></th> --}}
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
@@ -77,11 +77,11 @@
                                         @endif
       
                                     </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-100 text-sm leading-5">
+                                    {{-- <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-100 text-sm leading-5">
                                         @if ($file->status == $status_processed)
                                         <button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">...</button>
                                         @endif
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @empty
                                 <tr>

@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Jobs\XmlProcess;
 use App\Models\File as ModelsFile;
 use App\Services\FileService;
+use App\Services\ImportPeopleService;
+use App\Services\ImportShipOrdersService;
 use App\Services\UploadService;
+use App\Services\XmlPeopleService;
+use App\Services\XmlService;
+use App\Services\XmlShipOrdersService;
 use DOMDocument;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -61,16 +65,27 @@ class File extends Component
 
             $xsdType = $this->typeXsd($upload);
 
-            $file = $this->save($fileName, $xsdType, $upload);
+            $file = $this->save($xsdType, $upload);
 
-            XmlProcess::dispatch($file);
+
+            //XmlProcess::dispatch($file);
+
+            $items = XmlService::process(storage_path('app/'.$upload));
+
+            if (self::TYPE_PEOPLE == $xsdType) {
+                $total = ImportPeopleService::import($items, $file->id);
+            } else {
+                $total = ImportShipOrdersService::import($items, $file->id);
+            }
+
+            $this->updateStatusToProcessed($file->id, $total);
 
         } catch (Exception $e) {
             Log::error('Upload error. '. $e->getMessage() .' > ' . ' File '.$e->getFile() . ' LINE '.$e->getLine());
         }
     }
 
-    private function save($fileName, $xsdType, $upload)
+    private function save($xsdType, $upload)
     {
         $data = [
             'user_id' => Auth::id(),
@@ -82,6 +97,14 @@ class File extends Component
         ];
 
         return ModelsFile::create($data);
+    }
+
+    private function updateStatusToProcessed($fileId, $total)
+    {
+        return ModelsFile::whereId($fileId)->update([
+            'status' => self::STATUS_PROCESSED,
+            'records' => $total
+        ]);
     }
 
     public function typeXsd($value)

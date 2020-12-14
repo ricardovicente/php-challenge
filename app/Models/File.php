@@ -30,8 +30,24 @@ class File extends Model
         return $this->HasMany(Person::class);
     }
 
+    public function person_phone()
+    {
+        return $this->hasManyThrough(PersonPhone::class, Person::class);
+    }
+
     public function ship_order()
     {
         return $this->HasMany(ShipOrder::class);
     }
+
+    public function ship_to()
+    {
+        return $this->hasManyThrough(ShipTo::class, ShipOrder::class);
+    }
+
+    public function ship_item()
+    {
+        return $this->hasManyThrough(ShipItem::class, ShipOrder::class);
+    }
+
 }

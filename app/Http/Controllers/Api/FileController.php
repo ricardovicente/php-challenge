@@ -15,7 +15,11 @@ class FileController extends Controller
 
     public function items($id)
     {
-        $items = File::whereId($id)->get();
-        return $items;
+        return File::whereId($id)->with(['person' => function ($query) {
+            $query->with('person_phone');
+        }])->with(['ship_order' => function ($query) {
+            $query->with('ship_to');
+            $query->with('ship_item');
+        }])->get();
     }
 }
