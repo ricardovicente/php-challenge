@@ -23,6 +23,12 @@ $ composer install
 $ npm install && npm run dev
 ````
 
+### Generate .env
+
+````
+$ cp .env.example .env
+````
+
 Important details
 -----
 
