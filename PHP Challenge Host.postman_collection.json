@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "aa557a9f-487a-4911-8a73-9963441ae6a3",
+		"name": "PHP Challenge Host",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User::ME",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_phpchallenge_host}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://invillia.activelab.com.br/api/me",
+					"protocol": "http",
+					"host": [
+						"invillia",
+						"activelab",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File::index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_phpchallenge_host}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://invillia.activelab.com.br/api/files",
+					"protocol": "http",
+					"host": [
+						"invillia",
+						"activelab",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File::items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_phpchallenge_host}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://invillia.activelab.com.br/api/files/923f19d3-ca0a-43ed-82ad-22609f1b11b4/items",
+					"protocol": "http",
+					"host": [
+						"invillia",
+						"activelab",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"files",
+						"923f19d3-ca0a-43ed-82ad-22609f1b11b4",
+						"items"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -17,12 +17,6 @@ $ git clone https://github.com/ricardovicente/php-challenge.git
 $ composer install
 ````
 
-### Install node_modules
-
-````bash
-$ npm install && npm run dev
-````
-
 ### Generate .env
 
 ````
@@ -43,6 +37,7 @@ Inside the container:
 ````bash
 $ chmod -Rf 777 bootstrap
 $ chmod -Rf 777 storage
+$ php artisan key:generate
 $ php artisan migrate
 ````
 
@@ -52,7 +47,7 @@ It is necessary to leave the queue monitor started to perform the process of imp
 $ php artisan queue:work
 ````
 - - -
-WEB
+WEB LOCALHOST
 ------------
 
 To access the web system, use the URL below and make a new registration:
@@ -63,6 +58,13 @@ http://localhost:8080/register
 Then just log in normally
 ````
 http://localhost:8080/
+````
+
+WEB ONLINE
+------------
+
+````
+http://invillia.activelab.com.br/
 ````
 
 - - -
