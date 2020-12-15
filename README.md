@@ -11,6 +11,12 @@ Installation
 $ git clone https://github.com/ricardovicente/php-challenge.git
 ````
 
+### Star Docker
+
+````
+$ docker-compose start
+````
+
 ### Install Laravel vendors
 
 ````bash
