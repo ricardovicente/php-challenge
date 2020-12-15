@@ -5,10 +5,7 @@ namespace App\Http\Livewire;
 use App\Jobs\XmlProcess;
 use App\Models\File as ModelsFile;
 use App\Services\FileService;
-use App\Services\ImportPeopleService;
-use App\Services\ImportShipOrdersService;
 use App\Services\UploadService;
-use App\Services\XmlService;
 use DOMDocument;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -69,15 +66,6 @@ class File extends Component
 
             XmlProcess::dispatch($file);
 
-            // $items = XmlService::process(storage_path('app/'.$upload));
-
-            // if (self::TYPE_PEOPLE == $xsdType) {
-            //     $total = ImportPeopleService::import($items, $file->id);
-            // } else {
-            //     $total = ImportShipOrdersService::import($items, $file->id);
-            // }
-
-            // $this->updateStatusToProcessed($file->id, $total);
 
         } catch (Exception $e) {
             Log::error('Upload error. '. $e->getMessage() .' > ' . ' File '.$e->getFile() . ' LINE '.$e->getLine());
@@ -98,14 +86,6 @@ class File extends Component
         return ModelsFile::create($data);
     }
 
-    // private function updateStatusToProcessed($fileId, $total)
-    // {
-    //     return ModelsFile::whereId($fileId)->update([
-    //         'status' => self::STATUS_PROCESSED,
-    //         'records' => $total
-    //     ]);
-    // }
-
     public function typeXsd($value)
     {
         $objDom = new DOMDocument;
@@ -117,5 +97,4 @@ class File extends Component
 
         return ($schemaPeople) ? self::TYPE_PEOPLE : self::TYPE_SHIP_ORDERS;
     }
-
 }

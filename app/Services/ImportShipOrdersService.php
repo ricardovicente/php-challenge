@@ -6,7 +6,6 @@ use App\Models\Person;
 use App\Models\ShipItem;
 use App\Models\ShipOrder;
 use App\Models\ShipTo;
-use Illuminate\Support\Facades\Log;
 
 class ImportShipOrdersService implements ImportServiceInterface
 {
