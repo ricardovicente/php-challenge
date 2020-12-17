@@ -81,7 +81,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/files/923ef02c-985e-4528-8662-baf47cd05d53/items",
+					"raw": "http://localhost:8080/api/files/1/items",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -90,7 +90,7 @@
 					"path": [
 						"api",
 						"files",
-						"923ef02c-985e-4528-8662-baf47cd05d53",
+						"1",
 						"items"
 					]
 				}

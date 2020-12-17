@@ -85,7 +85,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://invillia.activelab.com.br/api/files/923f19d3-ca0a-43ed-82ad-22609f1b11b4/items",
+					"raw": "http://invillia.activelab.com.br/api/files/1/items",
 					"protocol": "http",
 					"host": [
 						"invillia",
@@ -96,7 +96,7 @@
 					"path": [
 						"api",
 						"files",
-						"923f19d3-ca0a-43ed-82ad-22609f1b11b4",
+						"1",
 						"items"
 					]
 				}
