@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Traits\Uuid;
 use Illuminate\Support\Str;
 
 class ShipTo extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory;
+
+    public $timestamps = false;
 
     protected $fillable = [
         'ship_order_id',

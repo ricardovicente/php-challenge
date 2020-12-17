@@ -14,13 +14,12 @@ class CreateShipItemsTable extends Migration
     public function up()
     {
         Schema::create('ship_items', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('ship_order_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('ship_order_id');
             $table->string('title');
             $table->string('note');
             $table->unsignedInteger('quantity');
             $table->double('price', 10, 2);
-            $table->timestamps();
 
             $table->foreign('ship_order_id')->references('id')->on('ship_orders')->onDelete('cascade');
         });

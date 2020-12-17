@@ -14,10 +14,9 @@ class CreatePersonPhonesTable extends Migration
     public function up()
     {
         Schema::create('person_phones', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('person_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('person_id');
             $table->string('number');
-            $table->timestamps();
 
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
         });

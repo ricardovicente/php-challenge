@@ -18,25 +18,17 @@ class File extends Component
 {
     use WithPagination, WithFileUploads;
 
-    const STATUS_UPLOADING = 'uploading';
-    const STATUS_WAITING = 'waiting';
-    const STATUS_PROGRESS = 'progress';
-    const STATUS_PROCESSED = 'processed';
-
-    const TYPE_PEOPLE = 'people';
-    const TYPE_SHIP_ORDERS = 'shiporders';
-
-    public $status_uploading = self::STATUS_UPLOADING;
-    public $status_waiting = self::STATUS_WAITING;
-    public $status_progress = self::STATUS_PROGRESS;
-    public $status_processed = self::STATUS_PROCESSED;
+    public $status_uploading = XmlProcess::STATUS_UPLOADING;
+    public $status_waiting = XmlProcess::STATUS_WAITING;
+    public $status_progress = XmlProcess::STATUS_PROGRESS;
+    public $status_processed = XmlProcess::STATUS_PROCESSED;
 
     public $attachment;
     public $naTela;
 
     public function render()
     {
-        $files = ModelsFile::where('status', '!=', self::STATUS_UPLOADING)
+        $files = ModelsFile::where('status', '!=', XmlProcess::STATUS_UPLOADING)
                             ->orderBy('id', 'DESC')
                             ->paginate(10);
 
@@ -80,7 +72,7 @@ class File extends Component
             'stored_path' => $upload,
             'size'=> FileService::fileSize($this->attachment),
             'type' => $xsdType,
-            'status' => self::STATUS_WAITING
+            'status' => XmlProcess::STATUS_WAITING
         ];
 
         return ModelsFile::create($data);
@@ -95,6 +87,6 @@ class File extends Component
         $schemaPeople = @$objDom->schemaValidate(app_path('Rules/people.xsd'));
         //$schemaShipOrders = @$objDom->schemaValidate(app_path('Rules/shiporders.xsd'));
 
-        return ($schemaPeople) ? self::TYPE_PEOPLE : self::TYPE_SHIP_ORDERS;
+        return ($schemaPeople) ? XmlProcess::TYPE_PEOPLE : XmlProcess::TYPE_SHIP_ORDERS;
     }
 }

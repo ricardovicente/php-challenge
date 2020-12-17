@@ -14,9 +14,9 @@ class CreateShipOrdersTable extends Migration
     public function up()
     {
         Schema::create('ship_orders', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('file_id');
-            $table->uuid('person_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('file_id');
+            $table->unsignedBigInteger('person_id');
             $table->string('original_id');
             $table->timestamps();
 

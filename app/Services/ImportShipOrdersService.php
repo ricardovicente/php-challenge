@@ -55,7 +55,7 @@ class ImportShipOrdersService implements ImportServiceInterface
         $setItems = count($item['items']['item']) == 2 ? $item['items']['item'] : $item['items'];
 
         foreach ($setItems as $itemOnce) {
-            $data = [
+            $data[] = [
                 'ship_order_id' => $shipOrderId,
                 'title' => $itemOnce['title'],
                 'note' => $itemOnce['note'],
@@ -63,8 +63,21 @@ class ImportShipOrdersService implements ImportServiceInterface
                 'price' => $itemOnce['price']
             ];
 
-            ShipItem::create($data);
+            self::confirmShipItem($data);
         }
+        return;
+    }
+
+
+    private static function confirmShipItem($data)
+    {
+        $chunks = array_chunk($data, 20);
+
+        foreach ($chunks as $chunk)
+        {
+            ShipItem::insert($chunk);
+        }
+
         return;
     }
 

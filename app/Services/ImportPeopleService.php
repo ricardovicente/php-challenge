@@ -34,24 +34,35 @@ class ImportPeopleService implements ImportServiceInterface
     {
         if (is_array($item['phones']['phone'])) {
             foreach ($item['phones']['phone'] as $phone) {
-                self::insertPersonPhoneItem($personId, $phone);
+                $data[] = [
+                    'person_id' => $personId,
+                    'number' => $phone
+                ];
             }
+
+            self::insertPersonPhoneItem($data);
+
             return;
         }
 
-        self::insertPersonPhoneItem($personId, $item['phones']['phone']);
+        $data[] = [
+            'person_id' => $personId,
+            'number' => $item['phones']['phone']
+        ];
+
+        self::insertPersonPhoneItem($data);
 
         return;
     }
 
-    private static function insertPersonPhoneItem($personId, $item)
+    private static function insertPersonPhoneItem($data)
     {
-        $data = [
-            'person_id' => $personId,
-            'number' => $item
-        ];
+        $chunks = array_chunk($data, 2);
 
-        PersonPhone::create($data);
+        foreach ($chunks as $chunk)
+        {
+            PersonPhone::insert($chunk);
+        }
 
         return;
     }

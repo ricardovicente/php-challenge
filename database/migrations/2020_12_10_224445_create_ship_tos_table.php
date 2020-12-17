@@ -14,13 +14,12 @@ class CreateShipTosTable extends Migration
     public function up()
     {
         Schema::create('ship_tos', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('ship_order_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('ship_order_id');
             $table->string('name');
             $table->string('address');
             $table->string('city');
             $table->string('country');
-            $table->timestamps();
 
             $table->foreign('ship_order_id')->references('id')->on('ship_orders')->onDelete('cascade');
         });

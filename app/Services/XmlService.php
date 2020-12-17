@@ -26,15 +26,21 @@ class XmlService
         return self::object_to_array($arr);
     }
 
-    private static function object_to_array($obj) {
-        if(is_object($obj)) $obj = (array) $obj;
-        if(is_array($obj)) {
+    private static function object_to_array($obj)
+    {
+        if (is_object($obj)) {
+            $obj = (array) $obj;
+        }
+        
+        if (is_array($obj)) {
             $new = array();
-            foreach($obj as $key => $val) {
+            foreach ($obj as $key => $val) {
                 $new[$key] = self::object_to_array($val);
             }
+        } else {
+            $new = $obj;
         }
-        else $new = $obj;
-        return $new;       
+
+        return $new;
     }
 }
